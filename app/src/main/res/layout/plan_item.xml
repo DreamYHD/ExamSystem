@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="70dp">
+
+    <LinearLayout
+        android:weightSum="7"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="69dp" >
+        <TextView
+            android:id="@+id/plan_time_item"
+            android:gravity="center"
+            android:text="8:00-9:00"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/plan_description_item"
+            android:gravity="center"
+            android:text="背诵英语单词"
+            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <Switch
+            android:id="@+id/plan_switch_item"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+    <TextView
+        android:background="@color/colorSplitWhite"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+</LinearLayout>

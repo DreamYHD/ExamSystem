@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="245dp"
+        android:background="@drawable/show">
+
+
+        <ImageView
+            android:id="@+id/image_vactor"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/img"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/login" />
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="11dp"
+            android:src="@drawable/ic_apps_black_24dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/image_vactor"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="11dp"
+            android:layout_toEndOf="@+id/image_vactor"
+            android:text="杨浩东"
+            android:textColor="@android:color/background_light"
+            android:textSize="20sp"
+            />
+
+        <TextView
+            android:id="@+id/school_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView"
+            android:layout_below="@+id/image_vactor"
+            android:layout_marginTop="16dp"
+            android:text="中北大学"
+            android:textColor="@android:color/background_light"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+
+
+</LinearLayout>

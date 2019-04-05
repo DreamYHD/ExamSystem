@@ -1,0 +1,125 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.examsystem.ui.ShowFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/show">
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="@color/colorWhite"
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="25dp"
+                android:text="失败是什么？没有什么，只是更走近成功一步。" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/show_day_text"
+                android:layout_centerHorizontal="true"
+                android:text="考研倒计时"
+                android:textColor="@color/colorWhite" />
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/show_day_text"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/show_min_text"
+                android:layout_centerHorizontal="true"
+                android:text="TextView"
+                android:textColor="@color/colorWhite" />
+
+            <TextView
+                android:id="@+id/show_min_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="@color/colorWhite" />
+        </RelativeLayout>
+        <me.zhouzhuo.zzhorizontalcalenderview.ZzHorizontalCalenderView
+            android:id="@+id/zz_horizontal_calender_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:zhc_day_selected_text_color="@android:color/white"
+            app:zhc_month_text_color="@color/colorPrimary"
+            app:zhc_today_point_color="@color/colorPrimary"
+            app:zhc_year_text_color="@color/colorPrimary" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="6dp"
+        android:weightSum="4"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+        <TextView
+            android:gravity="center"
+            android:text="时间"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:gravity="center"
+            android:text="任务"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="是否完成" />
+
+    </LinearLayout>
+    <TextView
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:background="@color/colorSplitWhite"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_margin="6dp"
+            android:id="@+id/recyclerView_paln"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+        <android.support.design.widget.FloatingActionButton
+            android:src="@drawable/ic_add_black_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="60dp"
+            android:id="@+id/plan_add_btn"/>
+    </android.support.design.widget.CoordinatorLayout>
+
+
+</LinearLayout>
