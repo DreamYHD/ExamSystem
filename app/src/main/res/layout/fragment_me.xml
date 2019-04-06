@@ -40,7 +40,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="11dp"
             android:layout_toEndOf="@+id/image_vactor"
-            android:text="杨浩东"
+            android:text="王筱睿"
             android:textColor="@android:color/background_light"
             android:textSize="20sp"
             />
@@ -52,7 +52,7 @@
             android:layout_alignStart="@+id/textView"
             android:layout_below="@+id/image_vactor"
             android:layout_marginTop="16dp"
-            android:text="中北大学"
+            android:text="西南交大峨眉小校区"
             android:textColor="@android:color/background_light"
             android:textSize="20sp" />
     </RelativeLayout>

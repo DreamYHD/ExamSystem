@@ -1,4 +1,4 @@
-package com.example.administrator.examsystem.ui;
+package com.example.administrator.examsystem.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,6 @@ import com.example.administrator.examsystem.R;
 import com.example.administrator.examsystem.base.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity {

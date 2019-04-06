@@ -1,10 +1,12 @@
-package com.example.administrator.examsystem.ui;
+package com.example.administrator.examsystem.ui.show;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.administrator.examsystem.R;
 import com.example.administrator.examsystem.ui.adapter.PlanAdapter;
+import com.example.administrator.examsystem.utils.DayToDay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,7 @@ import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import me.zhouzhuo.zzhorizontalcalenderview.ZzHorizontalCalenderView;
 
@@ -41,11 +45,13 @@ public class ShowFragment extends Fragment {
     @BindView(R.id.zz_horizontal_calender_view)
     ZzHorizontalCalenderView zzHorizontalCalenderView;
     Unbinder unbinder;
-    private List<String>list = new ArrayList<>();
+    @BindView(R.id.plan_add_btn)
+    FloatingActionButton planAddBtn;
+    private List<String> list = new ArrayList<>();
     private PlanAdapter planAdapter;
 
 
-    private static long mDay = 23;// 天
+    private static long mDay = DayToDay.getDay();// 天
     private static long mHour = 11;//小时,
     private static long mMin = 56;//分钟,
     private static long mSecond = 32;//秒
@@ -61,7 +67,7 @@ public class ShowFragment extends Fragment {
             if (msg.what == 1) {
                 computeTime();
                 showDayText.setText(mDay + "");//天数不用补位
-                showMinText.setText(getTv(mHour) + ":" + getTv(mMin) + ":" + getTv(mSecond));
+                showMinText.setText(DayToDay.TimeDiff() + getTv(mSecond));
                 if (mSecond == 0 && mDay == 0 && mHour == 0 && mMin == 0) {
                     mTimer.cancel();
                 }
@@ -70,13 +76,14 @@ public class ShowFragment extends Fragment {
     };
 
 
-    private void initRecyclerView(){
-        planAdapter = new PlanAdapter(getContext(),list);
+    private void initRecyclerView() {
+        planAdapter = new PlanAdapter(getContext(), list);
         recyclerViewPaln.setAdapter(planAdapter);
         recyclerViewPaln.setLayoutManager(new LinearLayoutManager(getContext()));
         planAdapter.notifyDataSetChanged();
 
     }
+
     public ShowFragment() {
         // Required empty public constructor
     }
@@ -179,5 +186,11 @@ public class ShowFragment extends Fragment {
         mTimer.cancel();
 
         unbinder.unbind();
+    }
+
+    @OnClick(R.id.plan_add_btn)
+    public void onViewClicked() {
+        Intent intent = new Intent(getContext(),AddPlanActivity.class);
+        startActivity(intent);
     }
 }

@@ -6,7 +6,7 @@
         android:title="首页"/>
     <item android:id="@+id/note_item"
         android:icon="@drawable/ic_laptop_chromebook_black_24dp"
-        android:title="笔记"/>
+        android:title="错题"/>
     <item android:id="@+id/discuss_item"
         android:icon="@drawable/ic_pets_black_24dp"
         android:title="交流"/>

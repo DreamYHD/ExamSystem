@@ -1,4 +1,4 @@
-package com.example.administrator.examsystem.ui;
+package com.example.administrator.examsystem.ui.login;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

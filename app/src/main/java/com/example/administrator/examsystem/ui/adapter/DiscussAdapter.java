@@ -45,7 +45,7 @@ public class DiscussAdapter extends RecyclerView.Adapter<DiscussAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return 6;
+        return 3;
     }
 
 

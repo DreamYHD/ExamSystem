@@ -9,13 +9,12 @@ import android.widget.FrameLayout;
 import com.example.administrator.examsystem.base.BaseActivity;
 import com.example.administrator.examsystem.ui.DiscussFragment;
 import com.example.administrator.examsystem.ui.MeFragment;
-import com.example.administrator.examsystem.ui.NoteFragment;
-import com.example.administrator.examsystem.ui.ShowFragment;
+import com.example.administrator.examsystem.ui.note.NoteFragment;
+import com.example.administrator.examsystem.ui.show.ShowFragment;
 import com.example.administrator.examsystem.utils.ActivityUtils;
 import com.example.administrator.examsystem.utils.BottomNavigationViewHelper;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 

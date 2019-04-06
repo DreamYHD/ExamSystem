@@ -1,13 +1,19 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.examsystem.ui.NoteFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    tools:context="com.example.administrator.examsystem.ui.note.NoteFragment">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/note_recyclerView"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</LinearLayout>
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+    <android.support.design.widget.FloatingActionButton
+        android:src="@drawable/ic_add_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/note_add_btn"/>
+</android.support.design.widget.CoordinatorLayout>
