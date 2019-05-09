@@ -1,6 +1,7 @@
 package com.example.administrator.examsystem.ui.plan;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,13 +17,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.avos.avoscloud.AVCloudQueryResult;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.CloudQueryCallback;
 import com.avos.avoscloud.FindCallback;
 import com.example.administrator.examsystem.R;
+import com.example.administrator.examsystem.base.OnClickListener;
 import com.example.administrator.examsystem.ui.adapter.PlanAdapter;
 import com.example.administrator.examsystem.utils.DayToDay;
 import com.example.administrator.examsystem.utils.TableUtil;
@@ -91,6 +97,37 @@ public class ShowFragment extends Fragment {
     };
     private void initRecyclerView() {
         planAdapter = new PlanAdapter(getContext(), planList);
+        planAdapter.setOnClickListener(new OnClickListener() {
+            @Override
+            public void click(View view, final int position) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+                builder.setTitle("提示：");
+                builder.setMessage("是否删除");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AVQuery.doCloudQueryInBackground("delete from Plan where objectId="+"'"+planList.get(position).getObjectId()+"'", new CloudQueryCallback<AVCloudQueryResult>() {
+                            @Override
+                            public void done(AVCloudQueryResult avCloudQueryResult, AVException e) {
+                                // 如果 e 为空，说明保存成功
+                                if (e == null){
+                                    Toast.makeText(getContext(), "删除成功", Toast.LENGTH_SHORT).show();
+                                    initData();
+                                }
+                            }
+                        });
+                    }
+                });
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.show();
+                Log.i(TAG, "click: "+position);
+            }
+        });
         recyclerViewPaln.setAdapter(planAdapter);
         recyclerViewPaln.setLayoutManager(new LinearLayoutManager(getContext()));
         planAdapter.notifyDataSetChanged();

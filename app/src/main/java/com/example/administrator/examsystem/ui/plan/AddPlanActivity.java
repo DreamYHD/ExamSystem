@@ -111,6 +111,8 @@ public class AddPlanActivity extends BaseActivity {
                 public void done(AVException e) {
                     if (e == null){
                         snackBar(findViewById(R.id.post_btn), "提交成功", 1);
+                        setResult(1000);
+                        mActivity.finish();
                     }else {
                         snackBar(findViewById(R.id.post_btn), "提交失败", 1);
                         Log.e(TAG, "done: 提交失败"+e.getMessage());

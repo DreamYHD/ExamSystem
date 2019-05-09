@@ -16,6 +16,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.SaveCallback;
 import com.example.administrator.examsystem.R;
+import com.example.administrator.examsystem.base.OnClickListener;
 import com.example.administrator.examsystem.utils.TableUtil;
 
 import java.util.ArrayList;
@@ -32,6 +33,12 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
     private Context context;
     private static final String TAG = "PlanAdapter";
     private List<AVObject> list = new ArrayList<>();
+    private OnClickListener onClickListener;
+
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+
     public PlanAdapter(Context context, List<AVObject> list) {
         this.context = context;
         this.list = list;
@@ -45,7 +52,15 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        if (onClickListener!=null){
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickListener.click(view,holder.getLayoutPosition());
+                }
+            });
+        }
         String planTimeItem = list.get(position).get(TableUtil.PLAN_START_TIME)+"-"+list.get(position).get(TableUtil.PLAN_END_TIME);
         String planContentItem = list.get(position).get(TableUtil.PLAN_CONTENT).toString();
         String planIsFinishItem = list.get(position).get(TableUtil.PLAN_IS_FINISH).toString();
