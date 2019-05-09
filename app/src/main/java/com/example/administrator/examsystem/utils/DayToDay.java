@@ -36,13 +36,14 @@ public class DayToDay {
     }
 
     public static String getTime(){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:mm");
         String pBeginTime = sdf.format(new Date());
         return pBeginTime;
     }
     public static String getTime(Date date){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:mm");
         String pBeginTime = sdf.format(date);
+        Log.i(TAG, "getTime: "+pBeginTime);
         return pBeginTime;
     }
     public static String TimeDiff()  {

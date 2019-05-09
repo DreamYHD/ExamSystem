@@ -16,9 +16,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.FindCallback;
 import com.example.administrator.examsystem.R;
 import com.example.administrator.examsystem.ui.adapter.PlanAdapter;
 import com.example.administrator.examsystem.utils.DayToDay;
+import com.example.administrator.examsystem.utils.TableUtil;
+import com.example.administrator.examsystem.utils.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +45,7 @@ public class ShowFragment extends Fragment {
 
 
     private static final String TAG = "ShowFragment";
+    private static final int RESULT_CODE = 100;
     @BindView(R.id.show_day_text)
     TextView showDayText;
     @BindView(R.id.show_min_text)
@@ -47,7 +55,7 @@ public class ShowFragment extends Fragment {
     Unbinder unbinder;
     @BindView(R.id.plan_add_btn)
     FloatingActionButton planAddBtn;
-    private List<String> list = new ArrayList<>();
+    private List<AVObject> planList = new ArrayList<>();
     private PlanAdapter planAdapter;
 
 
@@ -60,6 +68,13 @@ public class ShowFragment extends Fragment {
 
     private Timer mTimer = new Timer();
 
+    private Handler mainHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            initRecyclerView();
+        }
+    };
     private Handler timeHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -74,18 +89,43 @@ public class ShowFragment extends Fragment {
             }
         }
     };
-
-
     private void initRecyclerView() {
-        planAdapter = new PlanAdapter(getContext(), list);
+        planAdapter = new PlanAdapter(getContext(), planList);
         recyclerViewPaln.setAdapter(planAdapter);
         recyclerViewPaln.setLayoutManager(new LinearLayoutManager(getContext()));
         planAdapter.notifyDataSetChanged();
 
     }
 
+    private void initData() {
+        AVQuery<AVObject> query = new AVQuery<>(TableUtil.PLAN_TABLE_NAME);
+        query.whereEqualTo(TableUtil.PLAN_DATE, TimeUtil.getDate());
+        Log.i(TAG, "initData: "+TimeUtil.getDate() );
+        query.whereEqualTo(TableUtil.PLAN_USER, AVUser.getCurrentUser());
+        // 如果这样写，第二个条件将覆盖第一个条件，查询只会返回 priority = 1 的结果
+        query.findInBackground(new FindCallback<AVObject>() {
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                if (e == null){
+                    planList = list;
+                    mainHandler.sendEmptyMessage(0);
+                    Log.i(TAG, "done: "+ list.size());
+                }else {
+                    Log.e(TAG, "done: "+e.getMessage() );
+                }
+            }
+        });
+    }
+
     public ShowFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        initData();
+        initView();
     }
 
     public static ShowFragment getInstance() {
@@ -98,9 +138,19 @@ public class ShowFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_show, container, false);
         unbinder = ButterKnife.bind(this, view);
+        initData();
         initView();
         startRun();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i(TAG, "onResume: ");
+        initData();
+        initView();
+        startRun();
     }
 
     private void initView() {
@@ -109,6 +159,30 @@ public class ShowFragment extends Fragment {
             @Override
             public void onSelected(boolean hasChanged, int year, int month, int day, int week) {
                 Log.i(TAG, "onSelected: " + "日期是否有变化:" + hasChanged + ",\n\n日期:" + year + "-" + month + "-" + day + ",\n\n星期:" + week);
+                AVQuery<AVObject> query = new AVQuery<>(TableUtil.PLAN_TABLE_NAME);
+                String monthS = "";
+                String dayS = "";
+                if (month>=1 && month <= 9){
+                    monthS = "0"+ month;
+                }
+                if (day>=1 && day <= 9){
+                    dayS = "0" + day;
+                }
+                query.whereEqualTo(TableUtil.PLAN_DATE, year + "-" + monthS + "-" + dayS);
+                query.whereEqualTo(TableUtil.PLAN_USER, AVUser.getCurrentUser());
+                // 如果这样写，第二个条件将覆盖第一个条件，查询只会返回 priority = 1 的结果
+                query.findInBackground(new FindCallback<AVObject>() {
+                    @Override
+                    public void done(List<AVObject> list, AVException e) {
+                        if (e == null){
+                            planList = list;
+                            mainHandler.sendEmptyMessage(0);
+                            Log.i(TAG, "done: "+ list.size());
+                        }else {
+                            Log.e(TAG, "done: "+e.getMessage() );
+                        }
+                    }
+                });
             }
         });
         //动态设置各种属性值：
@@ -191,6 +265,6 @@ public class ShowFragment extends Fragment {
     @OnClick(R.id.plan_add_btn)
     public void onViewClicked() {
         Intent intent = new Intent(getContext(),AddPlanActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,RESULT_CODE);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.administrator.examsystem.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,8 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.avos.avoscloud.AVObject;
+import com.bumptech.glide.Glide;
 import com.example.administrator.examsystem.R;
 import com.example.administrator.examsystem.base.OnClickListener;
+import com.example.administrator.examsystem.utils.TableUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +28,10 @@ import butterknife.ButterKnife;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     private Context context;
-    private List<String> list = new ArrayList<>();
+    private List<AVObject> list = new ArrayList<>();
     private OnClickListener onClickListener;
 
-    public NoteAdapter(Context context, List<String> list) {
+    public NoteAdapter(Context context, List<AVObject> list) {
         this.context = context;
         this.list = list;
     }
@@ -43,6 +47,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         if (onClickListener!=null){
@@ -53,12 +58,16 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
                 }
             });
         }
-
+        holder.tagQuestionItem.setText("#"+list.get(position).get(TableUtil.NOTE_TITLE));
+        holder.descriptionQuestionItem.setText(list.get(position).get(TableUtil.NOTE_NAME).toString());
+        Glide.with(context)
+                .load(list.get(position).get(TableUtil.NOTE_IMG))
+                .into(holder.imgQuestionItem);
     }
 
     @Override
     public int getItemCount() {
-        return 2;
+        return list.size();
     }
 
 

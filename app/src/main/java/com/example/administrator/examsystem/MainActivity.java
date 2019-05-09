@@ -19,6 +19,7 @@ import butterknife.BindView;
 public class MainActivity extends BaseActivity {
 
 
+    private static final String TAG = "MainActivity";
     @BindView(R.id.content_main)
     FrameLayout contentMain;
     @BindView(R.id.bottom_menu)
@@ -26,6 +27,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void logicActivity(Bundle mSavedInstanceState) {
+
         if (mSavedInstanceState == null) {
             ActivityUtils.replaceFragmentToActivity(mFragmentManager, ShowFragment.getInstance(), R.id.content_main);
         }

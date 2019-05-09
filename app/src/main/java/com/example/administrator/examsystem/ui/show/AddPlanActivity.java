@@ -5,17 +5,23 @@ import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.SaveCallback;
 import com.bigkoo.pickerview.TimePickerView;
 import com.example.administrator.examsystem.R;
 import com.example.administrator.examsystem.base.BaseActivity;
 import com.example.administrator.examsystem.utils.DayToDay;
 import com.example.administrator.examsystem.utils.FlexTextUtil;
+import com.example.administrator.examsystem.utils.TableUtil;
+import com.example.administrator.examsystem.utils.TimeUtil;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.Date;
@@ -73,7 +79,6 @@ public class AddPlanActivity extends BaseActivity {
 
     private void displayFlexSubject(String[] strings) {
         for (int i = 0; i < strings.length; i++) {
-
             flexText.addView(createNewFlexItemTextView(strings[i]));
         }
     }
@@ -81,12 +86,47 @@ public class AddPlanActivity extends BaseActivity {
 
     @OnClick(R.id.back_btn)
     public void onBackBtnClicked() {
+        setResult(1000);
         this.finish();
     }
 
     @OnClick(R.id.post_btn)
     public void onPostBtnClicked() {
-        snackBar(findViewById(R.id.post_btn), "提交成功", 1);
+        String planContent = planEdit.getText().toString().trim();
+        String planStartTime = startTimeText.getText().toString().trim();
+        String planEndTime = endTimeText.getText().toString().trim();
+        String planDate = TimeUtil.getDate();
+        String planIsFinish = "no";
+        Log.i(TAG, "onPostBtnClicked: "+planDate);
+        if (avUserFinal != null){
+            AVObject plan = new AVObject(TableUtil.PLAN_TABLE_NAME);
+            plan.put(TableUtil.PLAN_CONTENT,planContent);
+            plan.put(TableUtil.PLAN_START_TIME,planStartTime);
+            plan.put(TableUtil.PLAN_END_TIME,planEndTime);
+            plan.put(TableUtil.PLAN_DATE,planDate);
+            plan.put(TableUtil.PLAN_USER,avUserFinal);
+            plan.put(TableUtil.PLAN_IS_FINISH,planIsFinish);
+            plan.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(AVException e) {
+                    if (e == null){
+                        snackBar(findViewById(R.id.post_btn), "提交成功", 1);
+                    }else {
+                        snackBar(findViewById(R.id.post_btn), "提交失败", 1);
+                        Log.e(TAG, "done: 提交失败"+e.getMessage());
+                    }
+                }
+            });
+        }else {
+            snackBar(findViewById(R.id.post_btn), "请先登录", 1);
+        }
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        setResult(1000);
+        return super.onKeyDown(keyCode, event);
     }
 
     @OnClick(R.id.start_time_text)
@@ -117,7 +157,8 @@ public class AddPlanActivity extends BaseActivity {
 
     @Override
     protected void logicActivity(Bundle mSavedInstanceState) {
-        displayFlexSubject(types);
+
+
     }
 
     @Override

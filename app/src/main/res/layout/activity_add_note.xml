@@ -40,10 +40,11 @@
         android:layout_margin="6dp"
         android:text="标签"
         android:textColor="@color/colorPrimary"
-        android:id="@+id/note_tag_edit"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <EditText
+        android:id="@+id/note_tag_edit"
         android:textColor="#707070"
         android:hint="请输入标签"
         android:layout_margin="6dp"

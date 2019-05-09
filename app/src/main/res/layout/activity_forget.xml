@@ -24,17 +24,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:layout_alignParentTop="true"
-        android:text="注册界面"
+        android:text="重置密码界面"
         android:layout_width="wrap_content"
         android:layout_height="40dp" />
 
 
-    <EditText
+    <TextView
         android:id="@+id/username_register"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:hint="用户名"
-        android:background="@color/colorWhite"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="80dp"
@@ -48,10 +46,9 @@
 
     <EditText
         android:id="@+id/phoneNumber"
-        android:inputType="textPassword"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:hint="密码"
+        android:hint="手机号"
         android:background="@color/colorWhite"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -67,12 +64,12 @@
 
     <EditText
         android:id="@+id/sms_code"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/hint2"
+        android:layout_below="@+id/phoneNumber"
         android:background="@color/colorWhite"
-        android:hint="学校"
+        android:hint="验证码"
         android:paddingLeft="15dp"
         android:paddingRight="15dp" />
     <TextView
@@ -90,7 +87,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/hint3"
         android:background="@color/colorWhite"
-        android:hint="手机号"
+        android:hint="新密码"
         android:paddingLeft="15dp"
         android:paddingRight="15dp" />
 
@@ -104,8 +101,18 @@
         android:background="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="注册"
+        android:text="提交"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/newPassEdit" />
+
+    <Button
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorAccent"
+        android:id="@+id/getSms_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_above="@+id/newPassEdit"
+        android:layout_toEndOf="@+id/sms_code"
+        android:text="获取验证码" />
 
 </RelativeLayout>

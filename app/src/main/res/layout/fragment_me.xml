@@ -52,7 +52,7 @@
             android:layout_alignStart="@+id/textView"
             android:layout_below="@+id/image_vactor"
             android:layout_marginTop="16dp"
-            android:text="西南交大峨眉小校区"
+            android:text="西南交大峨眉校区"
             android:textColor="@android:color/background_light"
             android:textSize="20sp" />
     </RelativeLayout>
