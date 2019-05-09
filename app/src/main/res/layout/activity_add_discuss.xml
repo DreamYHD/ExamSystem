@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/discuss_back_img"
+                android:layout_gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_arrow_back_black_24dp"/>
+
+            <TextView
+                android:textColor="#ffff"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="发布问题"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"/>
+
+            <ImageView
+                android:src="@drawable/ic_check_black_24dp"
+                android:id="@+id/discuss_send_btn"
+                android:layout_gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <EditText
+        android:paddingTop="4dp"
+        android:textColor="#89d1ca"
+        android:paddingLeft="10dp"
+        android:hint="描述相关问题"
+        android:id="@+id/discuss_edit_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_back"
+        android:gravity="top|left"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:maxWidth="5.0dip"
+        android:minWidth="10.0dip"
+        android:scrollHorizontally="false"
+        android:textSize="20sp"/>
+    <EditText
+        android:id="@+id/discuss_send_tags"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="10sp"
+        android:textColor="#89d1ca"
+        android:paddingLeft="10dp"
+        android:background="@drawable/shape_back"
+        android:hint="添加标签eg: #高等数学#线性代数"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/discuss_image_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+    <ImageView
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="#d2d2d2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <ImageView
+        android:background="@color/colorPrimary"
+        android:layout_gravity="center"
+        android:id="@+id/discuss_send_add_image"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_add_black_24dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+    <ImageView
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="#d2d2d2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/discuss_send_progressbar"
+        android:layout_gravity="center"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
+
+
+
+
+
+</LinearLayout>

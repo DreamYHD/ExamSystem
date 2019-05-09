@@ -1,4 +1,4 @@
-package com.example.administrator.examsystem.ui.show;
+package com.example.administrator.examsystem.ui.plan;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -157,8 +157,7 @@ public class AddPlanActivity extends BaseActivity {
 
     @Override
     protected void logicActivity(Bundle mSavedInstanceState) {
-
-
+        displayFlexSubject(types);
     }
 
     @Override

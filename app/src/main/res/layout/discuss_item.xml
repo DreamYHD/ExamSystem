@@ -28,7 +28,7 @@
                 android:layout_marginRight="100dp"
                 android:layout_marginTop="10dp"
                 android:lines="2"
-                android:text="请教：高等数学作业,如图所示，第三题"
+                android:text=""
                 android:textColor="#040405"
                 android:textSize="18sp"/>
 
@@ -38,7 +38,7 @@
                 android:layout_height="80dp"
                 android:layout_alignBottom="@+id/fragment_discuss_item_school"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/math" />
+                android:src="@mipmap/ic_launcher" />
 
             <ImageView
                 android:layout_marginBottom="5dp"
@@ -61,7 +61,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/fragment_xuanshang_item_moneyimage"
                 android:gravity="center"
-                android:text="王筱睿"/>
+                android:text=""/>
 
             <ImageView
                 android:layout_marginBottom="5dp"
@@ -82,7 +82,7 @@
                 android:layout_height="20dp"
                 android:layout_marginLeft="3dp"
                 android:gravity="center"
-                android:text="2017/08/12/2:02"
+                android:text=""
                 android:layout_alignTop="@+id/fragment_xuanshang_item_timeimage"
                 android:layout_toEndOf="@+id/fragment_xuanshang_item_timeimage"/>
 
@@ -109,7 +109,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_toRightOf="@+id/fragment_xuanshang_item_schoolimage"
                 android:gravity="center"
-                android:text="西南交大峨眉校区"/>
+                android:text=""/>
 
         </RelativeLayout>
 

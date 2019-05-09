@@ -59,30 +59,30 @@ public class AddNoteActivity extends BaseActivity {
             final String noteTag = noteTagEdit.getText().toString();
             final String noteName = noteShortEdit.getText().toString();
             final String noteContent = noteLongEdit.getText().toString();
-            String path = FileUtils.getFilePahtFromUri(this,noteUrl);
+            String path = FileUtils.getFilePathFromUri(this,noteUrl);
             Log.i(TAG, "onPostBtnNoteClicked: "+path);
-            AVObject avObject = new AVObject(TableUtil.NOTE_TABLE_NAME);
-            avObject.put(TableUtil.NOTE_NAME,noteName);
-            avObject.put(TableUtil.NOTE_TITLE,noteTag);
-            avObject.put(TableUtil.NOTE_CONTENT,noteContent);
-            avObject.put(TableUtil.NOTE_USER,avUserFinal);
-            avObject.put(TableUtil.NOTE_IMG,noteUrl.toString());
-            avObject.saveInBackground(new SaveCallback() {
-                @Override
-                public void done(AVException e) {
-                    if (e == null){
-                     toast("添加成功",1);
-                     setResult(1000);
-                     mActivity.finish();
-                    }
-                }
-            });
             try {
                 final AVFile file = AVFile.withAbsoluteLocalPath(FileUtils.getFileName(path),path);
                 file.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(AVException mE) {
                         if (mE == null) {
+                            AVObject avObject = new AVObject(TableUtil.NOTE_TABLE_NAME);
+                            avObject.put(TableUtil.NOTE_NAME,noteName);
+                            avObject.put(TableUtil.NOTE_TITLE,noteTag);
+                            avObject.put(TableUtil.NOTE_CONTENT,noteContent);
+                            avObject.put(TableUtil.NOTE_USER,avUserFinal);
+                            avObject.put(TableUtil.NOTE_IMG,file.getUrl());
+                            avObject.saveInBackground(new SaveCallback() {
+                                @Override
+                                public void done(AVException e) {
+                                    if (e == null){
+                                        toast("添加成功",1);
+                                        setResult(1000);
+                                        mActivity.finish();
+                                    }
+                                }
+                            });
                             Log.i(TAG, "done: "+file.getUrl());
                         } else {
                             Log.e(TAG, "done: " + mE.getMessage());

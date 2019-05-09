@@ -1,4 +1,4 @@
-package com.example.administrator.examsystem.ui.show;
+package com.example.administrator.examsystem.ui.plan;
 
 
 import android.content.Intent;
@@ -143,30 +143,19 @@ public class ShowFragment extends Fragment {
         startRun();
         return view;
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.i(TAG, "onResume: ");
-        initData();
-        initView();
-        startRun();
-    }
-
     private void initView() {
-        initRecyclerView();
         zzHorizontalCalenderView.setOnDaySelectedListener(new ZzHorizontalCalenderView.OnDaySelectedListener() {
             @Override
             public void onSelected(boolean hasChanged, int year, int month, int day, int week) {
                 Log.i(TAG, "onSelected: " + "日期是否有变化:" + hasChanged + ",\n\n日期:" + year + "-" + month + "-" + day + ",\n\n星期:" + week);
                 AVQuery<AVObject> query = new AVQuery<>(TableUtil.PLAN_TABLE_NAME);
-                String monthS = "";
-                String dayS = "";
+                String monthS = month+"";
+                String dayS = day+"";
                 if (month>=1 && month <= 9){
-                    monthS = "0"+ month;
+                    monthS = "0"+ monthS;
                 }
                 if (day>=1 && day <= 9){
-                    dayS = "0" + day;
+                    dayS = "0" + dayS;
                 }
                 query.whereEqualTo(TableUtil.PLAN_DATE, year + "-" + monthS + "-" + dayS);
                 query.whereEqualTo(TableUtil.PLAN_USER, AVUser.getCurrentUser());

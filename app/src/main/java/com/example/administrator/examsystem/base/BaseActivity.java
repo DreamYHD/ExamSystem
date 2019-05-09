@@ -5,19 +5,19 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVUser;
 
 import butterknife.ButterKnife;
-import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 /**
  * Created by Administrator on 2019/4/5.
  */
 
-public abstract class BaseActivity extends SwipeBackActivity {
+public abstract class BaseActivity extends AppCompatActivity {
     protected FragmentManager mFragmentManager;
     protected Activity mActivity;
     //protected AVUser mAVUserFinal;
@@ -29,6 +29,7 @@ public abstract class BaseActivity extends SwipeBackActivity {
         setContentView(getLayoutId());
         ButterKnife.bind(this);
         avUserFinal = AVUser.getCurrentUser();
+
         mFragmentManager = getSupportFragmentManager();
         mActivity = this;
         //mAVUserFinal = AVUser.getCurrentUser();

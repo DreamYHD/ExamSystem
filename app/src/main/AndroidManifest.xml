@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".MyApplication"
@@ -25,21 +26,24 @@
                 android:resource="@xml/file_paths_public" />
         </provider>
 
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".ui.login.RegistActivity" />
         <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.show.AddPlanActivity" />
+        <activity android:name=".ui.plan.AddPlanActivity" />
         <activity android:name=".ui.note.WrongQuestionActivity" />
         <activity android:name=".ui.note.AddNoteActivity" />
         <activity android:name=".ui.login.ForgetActivity" />
-        <activity android:name=".SplashActivity" android:theme="@style/AppTheme.Splash">
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.discuss.AddDiscussActivity" />
+        <activity android:name=".ui.discuss.ShowDiscussActivity"></activity>
     </application>
 
 </manifest>

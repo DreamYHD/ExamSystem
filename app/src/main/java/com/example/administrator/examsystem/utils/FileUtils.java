@@ -25,7 +25,7 @@ import static butterknife.internal.Utils.arrayOf;
 
 public class FileUtils {
     private static final String TAG = "FileUtils";
-    public static String getFilePahtFromUri(Context context, Uri uri) {
+    public static String getFilePathFromUri(Context context, Uri uri) {
         String data = null;
         Cursor mCursor = context.getContentResolver().query(uri, arrayOf(MediaStore.Images.ImageColumns.DATA), null, null, null);
         if (mCursor.moveToFirst()) {
