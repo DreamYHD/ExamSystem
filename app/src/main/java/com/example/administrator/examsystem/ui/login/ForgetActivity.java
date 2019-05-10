@@ -41,7 +41,7 @@ public class ForgetActivity extends BaseActivity {
 
     @OnClick(R.id.getSms_btn)
     public void onGetSms() {
-        AVUser.requestPasswordResetBySmsCodeInBackground(phoneNumber.getText().toString(), new RequestMobileCodeCallback() {
+        AVUser.requestMobilePhoneVerifyInBackground(phoneNumber.getText().toString(), new RequestMobileCodeCallback() {
             @Override
             public void done(AVException e) {
                 if (e == null) {
@@ -59,6 +59,7 @@ public class ForgetActivity extends BaseActivity {
     @OnClick(R.id.sendBtn)
     public void onSendBtnClicked() {
         if (isSms){
+
             AVUser.resetPasswordBySmsCodeInBackground(smsCode.getText().toString().trim(), newPassEdit.getText().toString(), new UpdatePasswordCallback() {
                 @Override
                 public void done(AVException e) {
