@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.example.administrator.examsystem.ui.me.AboutActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="50dp"
+        android:background="@drawable/bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="关于"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25sp" />
+
+        <TextView
+            android:padding="5dp"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="      该APP的制作用于15级通信工程安卓结课大作业，初步制作完成时间为2019年5月18日，因时间有限，有部分的功能没有实现，电视已经初具模型。该作业服务器端级数据库均由作者独立开发，安卓端部分UI借鉴网上设计，其所有源码已经公开，欢迎大家借鉴学习。开发思路过程以及源码详见" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+
+        <TextView
+            android:textColor="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="软件作者：王筱睿"
+            android:textSize="20sp" />
+
+        <TextView
+            android:textColor="@color/colorPrimary"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="学号：2015121828"
+            android:textSize="20sp" />
+
+        <TextView
+            android:textColor="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="指导老师：樊林"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -43,7 +43,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.discuss.AddDiscussActivity" />
-        <activity android:name=".ui.discuss.ShowDiscussActivity"></activity>
+        <activity android:name=".ui.discuss.ShowDiscussActivity" />
+        <activity android:name=".ui.me.RandomActivity" />
+        <activity android:name=".ui.me.SelectActivity" />
+        <activity android:name=".ui.me.AboutActivity"></activity>
     </application>
 
 </manifest>

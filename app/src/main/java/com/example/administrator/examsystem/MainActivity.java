@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.example.administrator.examsystem.base.BaseActivity;
-import com.example.administrator.examsystem.ui.MeFragment;
+import com.example.administrator.examsystem.ui.me.MeFragment;
 import com.example.administrator.examsystem.ui.discuss.DiscussFragment;
 import com.example.administrator.examsystem.ui.note.NoteFragment;
 import com.example.administrator.examsystem.ui.plan.ShowFragment;

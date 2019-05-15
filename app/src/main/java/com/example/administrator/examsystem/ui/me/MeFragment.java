@@ -1,6 +1,7 @@
-package com.example.administrator.examsystem.ui;
+package com.example.administrator.examsystem.ui.me;
 
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.avos.avoscloud.AVUser;
 import com.example.administrator.examsystem.R;
@@ -37,6 +39,16 @@ public class MeFragment extends Fragment {
     @BindView(R.id.school_text)
     TextView schoolText;
     Unbinder unbinder;
+    @BindView(R.id.me_subject_tv)
+    TextView meSubjectTv;
+    @BindView(R.id.me_subject_btn)
+    TextView meSubjectBtn;
+    @BindView(R.id.do_question_btn)
+    ImageView doQuestionBtn;
+    @BindView(R.id.do_select_btn)
+    ImageView doSelectBtn;
+    @BindView(R.id.do_about_btn)
+    ImageView doAboutBtn;
 
     public MeFragment() {
         // Required empty public constructor
@@ -58,10 +70,10 @@ public class MeFragment extends Fragment {
 
     private void initView() {
         AVUser avUser = AVUser.getCurrentUser();
-        if (avUser != null){
+        if (avUser != null) {
             textView.setText(avUser.getUsername());
             schoolText.setText(avUser.get(TableUtil.USER_SCHOOL).toString());
-        }else {
+        } else {
             textView.setText("请先登录");
             schoolText.setText("");
         }
@@ -76,19 +88,17 @@ public class MeFragment extends Fragment {
     @OnClick(R.id.image_vactor)
     public void onImageVactorClicked() {
         Intent intent = new Intent(getActivity(), LoginActivity.class);
-        startActivityForResult(intent,100);
+        startActivityForResult(intent, 100);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         initView();
-
     }
-
     @OnClick(R.id.img)
     public void onImgClicked() {
-        AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("提示：");
         builder.setMessage("是否退出登录");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -106,11 +116,45 @@ public class MeFragment extends Fragment {
         });
         builder.show();
     }
-    @OnClick(R.id.textView)
-    public void onTextViewClicked() {
+    @OnClick(R.id.me_subject_btn)
+    public void onMeSubjectBtnClicked() {
+
+        final String[] sex = {"政治单选", "政治多选"};
+        @SuppressLint("ResourceType") final AlertDialog.Builder dialog = new AlertDialog.Builder(getContext(), 3);
+        dialog.setTitle("选择科目");
+        dialog.setSingleChoiceItems(sex, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                meSubjectTv.setText(sex[i]);
+            }
+        });
+        dialog.create().show();
+
+    }
+    @OnClick(R.id.do_question_btn)
+    public void onDoQuestionBtnClicked() {
+        if (AVUser.getCurrentUser()!=null){
+            Intent intent = new Intent(getContext(),RandomActivity.class);
+            intent.putExtra("subject",meSubjectTv.getText());
+            startActivity(intent);
+        }else {
+            Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
+        }
+    }
+    @OnClick(R.id.do_select_btn)
+    public void onDoSelectBtnClicked() {
+        if (AVUser.getCurrentUser()!=null){
+            Intent intent = new Intent(getContext(),SelectActivity.class);
+            startActivity(intent);
+        }else {
+            Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    @OnClick(R.id.school_text)
-    public void onSchoolTextClicked() {
+    @OnClick(R.id.do_about_btn)
+    public void onDoAboutBtnClicked() {
+        Intent intent = new Intent(getContext(),AboutActivity.class);
+        startActivity(intent);
+
     }
 }

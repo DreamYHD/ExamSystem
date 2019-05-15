@@ -20,6 +20,7 @@ public class TableUtil {
     public static final String USER_PASSWORD = "password";
     public static final String USER_PHONE_NUMBER = "mobilePhoneNumber";
     public static final String USER_SCHOOL = "schoolName";
+    public static final String USER_QUESTION = "questions";
 
     //note
     public static final String NOTE_TABLE_NAME = "Note";
@@ -37,5 +38,15 @@ public class TableUtil {
     public static final String DISCUSS_TAG = "discussTag";
     public static final String DISCUSS_CONTENT = "discussContent";
     public static final String DISCUSS_ITEM = "discussItem";
+
+    //Question
+    public static final String QUESTION_TABLE_NAME = "Question";
+    //科目 0：政治 1：英语
+    // 00 政治单选 01政治多选 10 英语一阅读  11英语二阅读
+    public static final String QUESTION_TYPE = "type";
+    public static final String QUESTION_TITLE = "title";
+    public static final String QUESTION_SELECT = "select";
+    public static final String QUESTION_ANSWER = "answer";
+    public static final String QUESTION_TEACH = "teach";
 
 }
