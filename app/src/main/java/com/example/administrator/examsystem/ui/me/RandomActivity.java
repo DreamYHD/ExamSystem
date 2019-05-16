@@ -273,10 +273,10 @@ public class RandomActivity extends BaseActivity {
                 toast("回答错误", 0);
 
             }
-            answerAnswerTv.setVisibility(View.VISIBLE);
-            answerCankaodaanTitle.setVisibility(View.VISIBLE);
-            answerAnswerTv.setText(avObjectList.get(index).get(TableUtil.QUESTION_TEACH).toString());
         }
+        answerAnswerTv.setVisibility(View.VISIBLE);
+        answerCankaodaanTitle.setVisibility(View.VISIBLE);
+        answerAnswerTv.setText(avObjectList.get(index).get(TableUtil.QUESTION_TEACH).toString());
     }
     public void cancelAnswer(){
         answerAnswerTv.setVisibility(View.GONE);
